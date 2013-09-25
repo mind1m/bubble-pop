@@ -2,6 +2,7 @@ var gameWorld = function() {
 }
 
 gameWorld.prototype.score = 0;
+gameWorld.prototype.SHOULD_BE_CIRCLES = 150;
 
 gameWorld.prototype.setNiceViewCenter = function() {
     PTM = 32;
@@ -24,7 +25,7 @@ gameWorld.prototype.addCircle = function(num) {
     body.CreateFixture(cshape, 1.0);
     //position
     var randomValue = Math.random();
-    temp.Set(16*(Math.random()-0.5), 5 + 1*num);
+    temp.Set(15*(Math.random()-0.5), 6 + 0.5*num);
     body.SetTransform(temp, 0.0);
     body.SetLinearVelocity(ZERO);
     body.SetAwake(1);
@@ -33,12 +34,6 @@ gameWorld.prototype.addCircle = function(num) {
 }
 
 gameWorld.prototype.setup = function() {
-    var CIRCLES_NUM = 100;
-    // var NUMRANGE = [];    
-    // while (NUMRANGE.length < 20)
-    //     NUMRANGE.push(NUMRANGE.length+1);
-    // bodies = [null]; // Indexes start from 1
-    
     var bd_ground = new b2BodyDef();
     var groundBody = world.CreateBody(bd_ground);
 
@@ -51,7 +46,7 @@ gameWorld.prototype.setup = function() {
     groundBody.CreateFixture(shape0, 0.0);
     shape0.Set(new b2Vec2(-5, -4.0), new b2Vec2(-8.0, -1.0));
     groundBody.CreateFixture(shape0, 0.0);
-    shape0.Set(new b2Vec2(-8, -1), new b2Vec2(-8.0, 5));
+    shape0.Set(new b2Vec2(-8, -1), new b2Vec2(-8.0, 15));
     groundBody.CreateFixture(shape0, 0.0);
 
     //right part
@@ -59,12 +54,12 @@ gameWorld.prototype.setup = function() {
     groundBody.CreateFixture(shape0, 0.0);
     shape0.Set(new b2Vec2(5, -4.0), new b2Vec2(8.0, -1.0));
     groundBody.CreateFixture(shape0, 0.0);
-    shape0.Set(new b2Vec2(8, -1), new b2Vec2(8.0, 5));
+    shape0.Set(new b2Vec2(8, -1), new b2Vec2(8.0, 15));
     groundBody.CreateFixture(shape0, 0.0);
 
 
 
-    for (var i=0; i<CIRCLES_NUM; i++) {
+    for (var i=0; i<this.SHOULD_BE_CIRCLES; i++) {
         this.addCircle(i);
 
     }
@@ -72,10 +67,9 @@ gameWorld.prototype.setup = function() {
 }
 
 gameWorld.prototype.step = function() {
-    var SHOULD_BE_CIRCLES = 100;
     var bodyCount = world.GetBodyCount();
-    if (bodyCount<SHOULD_BE_CIRCLES) {
-        for (var i=0; i<SHOULD_BE_CIRCLES - bodyCount; i++) {
+    if (bodyCount<this.SHOULD_BE_CIRCLES) {
+        for (var i=0; i<this.SHOULD_BE_CIRCLES - bodyCount; i++) {
             this.addCircle(i);
         }
     }
