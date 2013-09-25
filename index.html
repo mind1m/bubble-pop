@@ -1,21 +1,40 @@
-<head>
-    <script src="js/box2d.js"></script>
-    <script src="js/helpers.js"></script>
-    <script src="js/game.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <script src="js/box2d.js"></script>
+        <script src="js/helpers.js"></script>
+        <script src="js/game.js"></script>
 
-    <script src="js/base.js"></script>
-    <script src="js/debugDraw.js"></script>
-<title>Bubble POP!</title>
+        <script src="js/base.js"></script>
+        <script src="js/debugDraw.js"></script>
+        
+        <title>Bubble POP!</title>
 
-        <script type="text/javascript">  
-            window.onload = function() {
-                using(Box2D, "b2.+")
-                init();                
-                animate();
-            };        
-        </script>
-<head/>
+            <script type="text/javascript">  
+                window.onload = function() {
+                    using(Box2D, "b2.+")
+                    init();                
+                    animate();
+                };        
+            </script>
+    <head/>
 
-<body>
-    <canvas id="canvas" width="640" height="480" tabindex='1'></canvas>
-</body>
+    <body>
+        <div class="container">
+            <h1>Meet Bubble POP!</h1>
+            <br>
+            <div class="text-center">
+                <canvas id="canvas" width="640" height="480" tabindex='1'></canvas>
+            </div>
+            <br>
+            <h3>Click out colored groups<br>
+            Gain score<br>
+            Enjoy the physics<br> </h3>
+            <p class="text-muted text-right"><a href="https://github.com/mind1master">Made by Anton Kasyanov</a></p>
+        </div>  
+    </body>
+
+</html>
