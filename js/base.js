@@ -87,7 +87,7 @@ function onMouseDown(canvas, evt) {
     myQueryCallback.m_fixture = null;
     myQueryCallback.m_point = new b2Vec2(mousePosWorld.x, mousePosWorld.y);
     world.QueryAABB(myQueryCallback, aabb);
-    
+    //what;s under pointer
     if (myQueryCallback.m_fixture)
     {
         var body = myQueryCallback.m_fixture.GetBody();
@@ -115,10 +115,17 @@ function onMouseDown(canvas, evt) {
         }
         bodies_to_destroy.push(body);
         check_combination(body);
-        for (var i = 0; i<bodies_to_destroy.length; i++) {
-        	world.DestroyBody(bodies_to_destroy[i]);	
+
+        if (bodies_to_destroy.length > 2) {
+
+            //update score
+            currentGame.score += bodies_to_destroy.length;
+
+            //clear group
+            for (var i = 0; i<bodies_to_destroy.length; i++) {
+            	world.DestroyBody(bodies_to_destroy[i]);	
+            }        
         }
-        
     }
 
 }
@@ -218,8 +225,15 @@ function draw() {
     //black background
     context.fillStyle = 'rgb(0,0,0)';
     context.fillRect( 0, 0, canvas.width, canvas.height );
+
+    //user score
+    context.fillStyle = "white";
+    context.font = "bold 16px Arial";
+    context.fillText("Your score: " + currentGame.score, 15, canvas.height - 20);         
     
-    context.save();            
+
+    //magic with canvas
+    context.save();   
     context.translate(canvasOffset.x, canvasOffset.y);
     context.scale(1,-1);                
     context.scale(PTM,PTM);
@@ -259,6 +273,7 @@ function draw() {
 		}
 		node = node.GetNext();	
 	}
+
 
 
     context.restore();

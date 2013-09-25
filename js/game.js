@@ -1,6 +1,8 @@
 var gameWorld = function() {
 }
 
+gameWorld.prototype.score = 0;
+
 gameWorld.prototype.setNiceViewCenter = function() {
     PTM = 32;
     setViewCenterWorld( new b2Vec2(0,0), true );
@@ -22,7 +24,7 @@ gameWorld.prototype.addCircle = function(num) {
     body.CreateFixture(cshape, 1.0);
     //position
     var randomValue = Math.random();
-    temp.Set(15*(Math.random()-0.5), 5 + 1*num);
+    temp.Set(16*(Math.random()-0.5), 5 + 1*num);
     body.SetTransform(temp, 0.0);
     body.SetLinearVelocity(ZERO);
     body.SetAwake(1);
